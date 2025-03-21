@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Lab3.ObserverPattern;
 
 
 namespace Lab3
@@ -326,6 +327,22 @@ namespace Lab3
             {
                 Console.ReadLine();
                 return;
+            }
+
+
+            Console.Write("Отримувати докладні сповіщення про процес гри? (так/ні): ");
+            string answer = Console.ReadLine().Trim().ToLower();
+
+            GameObserver observer = new GameObserver();
+
+            if (answer == "так")
+            {
+                selectedGame.SubscribeObserver(observer);
+                Console.WriteLine("🔔 Ви підписалися на докладні сповіщення.");
+            }
+            else
+            {
+                Console.WriteLine("🔕 Докладні сповіщення не були увімкнені.");
             }
 
             selectedGame.StartGame(user);

@@ -1,4 +1,5 @@
 ﻿using Lab3.Games;
+using Lab3.ObserverPattern;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,14 @@ namespace Lab3.Base
         [JsonProperty]
         public bool IsRunning { get; private set; }
 
+
         public event Action<string> GameTick;
+
         public abstract void SaveGame();
         public abstract bool CanStartGame(User user);
         public abstract void LoadProgress();
+
+
         protected BaseGame(string name, int ram, int cpu, int gpu, int hdd)
         {
             Name = name;
@@ -69,33 +74,52 @@ namespace Lab3.Base
             }
         }
 
+
+        private GameMonitor gameMonitor = new GameMonitor();
+
+        public void SubscribeObserver(GameObserver observer)
+        {
+            observer.Subscribe(gameMonitor);
+        }
+
+        protected void Notify(string message)
+        {
+            gameMonitor.Notify(new GameEvent(Name, message));
+        }
+
+
         public void StartGame(User user)// задає загальний алгоритм запуску гри
         {
             LoadProgress();
             IsRunning = true;
             Console.WriteLine($"{Name} запущена!");
-
-            Task.Run(async () =>
+            Notify("Гра запущена!");
+            Console.WriteLine("Натисніть ESC, щоб завершити гру...");
+            while (IsRunning)
             {
-                while (IsRunning)
+                System.Threading.Thread.Sleep(1000);
+                GameTick?.Invoke(Name);
+                Notify("Ігровий процес триває...");
+                if (Console.KeyAvailable)
                 {
-                    await Task.Delay(1000);
-                    if (!IsRunning) break; 
-                    GameTick?.Invoke(Name);
+                    var key = Console.ReadKey(true).Key;
+                    if (key == ConsoleKey.Escape)
+                    {
+                        Console.WriteLine("Гру завершено за запитом гравця.");
+                        StopGame();
+                        break;
+                    }
                 }
-            });
-
-            Console.WriteLine("Натисніть будь-яку клавішу, щоб завершити гру...");
-            Console.ReadKey();
-            StopGame();
+            }
         }
 
         public void StopGame()
         {
             if (!IsRunning) return;
-
-            IsRunning = false; 
+            IsRunning = false;
             Console.WriteLine($"{Name} завершена.");
+            Notify("Гра завершена.");
+            gameMonitor.Complete();// завершуємо та видаляємо підписників
             SaveGame();
 
             Menu menu = new Menu();
