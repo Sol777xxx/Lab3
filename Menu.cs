@@ -1,4 +1,5 @@
-﻿using Lab3.Base;
+﻿using Lab3.FactoryMethod;
+using Lab3.Base;
 using Lab3.Games;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+
 
 namespace Lab3
 {
@@ -128,7 +130,7 @@ namespace Lab3
             }
         }
 
-        private void CreateNewGame()
+        public void CreateNewGame()
         {
             Console.Clear();
             Console.WriteLine("Оберіть жанр гри:");
@@ -138,73 +140,57 @@ namespace Lab3
             Console.Write("Ваш вибір: ");
 
             string choice = Console.ReadLine();
-
             Console.Write("Введіть назву гри: ");
             string name = Console.ReadLine();
 
-            int hdd = 0, ram = 0, cpu = 0, gpu = 0;
+            GameCreator factory = null;
 
-
-            if (choice != "3") 
-            {
-                Console.Write("Скільки гра займає на HDD (в ГБ): ");
-                if (!int.TryParse(Console.ReadLine(), out hdd))
-                {
-                    Console.WriteLine("Некоректне значення!");
-                    return;
-                }
-
-                Console.Write("Мінімальна RAM (в ГБ): ");
-                if (!int.TryParse(Console.ReadLine(), out ram))
-                {
-                    Console.WriteLine("Некоректне значення!");
-                    return;
-                }
-
-                Console.Write("Мінімальний CPU (в ядрах): ");
-                if (!int.TryParse(Console.ReadLine(), out cpu))
-                {
-                    Console.WriteLine("Некоректне значення!");
-                    return;
-                }
-
-                Console.Write("Мінімальна GPU (в ГБ): ");
-                if (!int.TryParse(Console.ReadLine(), out gpu))
-                {
-                    Console.WriteLine("Некоректне значення!");
-                    return;
-                }
-            }
-
-
-            BaseGame newGame;
             switch (choice)
             {
                 case "1":
-                    newGame = new SimulatorGame(name, ram, cpu, gpu, hdd);
+                    factory = new SimulatorGameCreator();
                     break;
                 case "2":
-                    newGame = new StrategyGame(name, ram, cpu, gpu, hdd);
+                    factory = new StrategyGameCreator();
                     break;
                 case "3":
-                    newGame = new OnlineCasino(name);
-                    if (!user.CanAddOnlineGame(newGame))
-                    {
-                        return; 
-                    }
+                    factory = new OnlineCasinoCreator();
                     break;
                 default:
                     Console.WriteLine("Невірний вибір жанру.");
                     return;
             }
-          
+
+            int ram = 0, cpu = 0, gpu = 0, hdd = 0;
+
+            if (choice != "3")
+            {
+                Console.Write("Скільки гра займає на HDD (в ГБ): ");
+                int.TryParse(Console.ReadLine(), out hdd);
+
+                Console.Write("Мінімальна RAM (в ГБ): ");
+                int.TryParse(Console.ReadLine(), out ram);
+
+                Console.Write("Мінімальний CPU (в ядрах): ");
+                int.TryParse(Console.ReadLine(), out cpu);
+
+                Console.Write("Мінімальна GPU (в ГБ): ");
+                int.TryParse(Console.ReadLine(), out gpu);
+            }
+
+            BaseGame newGame = factory.FactoryMethod(name, ram, cpu, gpu, hdd);
+
+            if (choice == "3" && !user.CanAddOnlineGame(newGame))
+            {
+                return;
+            }
+
             var games = Database.LoadGames();
             games.Add(newGame);
             Database.SaveGames(games);
 
             Console.WriteLine($"Гра \"{newGame.Name}\" успішно додана в базу!");
         }
-
 
 
         public void DownloadGame()
