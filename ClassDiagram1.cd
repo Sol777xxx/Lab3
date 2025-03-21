@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab2.Base.BaseGame" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkAAAAAQAAoUAAQAQAQgAAAAAAEAAAgAAAAACAE=</HashCode>
+      <FileName>Games\Base\BaseGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Games.OnlineCasino" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAgAAAAAgAAIAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Games\OnlineCasino.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Games.SimulatorGame" Collapsed="true">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAgAAAAAgAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Games\SimulatorGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Games.StrategyGame" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAgAAAAAgAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Games\StrategyGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Database" Collapsed="true">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAgQAAAAAAAAAIAAAAAAAAAAAAIgAAIAAAE=</HashCode>
+      <FileName>Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.GameSave" Collapsed="true">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>GameSave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Menu" Collapsed="true">
+    <Position X="7" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAgAAAAAAAAAAAAAAAAACABAAAAABAABAQA=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.User" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAgAAAAgIUAQABAQAAUAASMAAAgAEAAAgQEIAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Program" Collapsed="true">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9.75" />
+</ClassDiagram>
