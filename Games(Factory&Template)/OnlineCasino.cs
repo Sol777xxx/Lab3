@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab3.Games
 {
-    public class OnlineCasino : BaseGame
+    public class OnlineCasino : BaseGame//ConcreteClass1,ConcreteProduct1
     {
         public OnlineCasino(string name) : base(name, 0, 0, 0, 0)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab3.Base
 {
-    public abstract class BaseGame
+    public abstract class BaseGame//AbstractClass Template Method (шаблонний),IProduct хоч і не інтерфейс 
     {
         public string Name { get; protected set; }
         [JsonProperty]
@@ -69,9 +69,7 @@ namespace Lab3.Base
             }
         }
 
-
-
-        public void StartGame(User user)
+        public void StartGame(User user)// задає загальний алгоритм запуску гри
         {
             LoadProgress();
             IsRunning = true;

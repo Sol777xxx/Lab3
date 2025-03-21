@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab3.Games
 {
-    public class SimulatorGame : BaseGame
+    public class SimulatorGame : BaseGame//ConcreteClass2,ConcreteProduct2
     {
         public SimulatorGame(string name, int ram, int cpu, int gpu, int hdd)
             : base(name, ram, cpu, gpu, hdd)

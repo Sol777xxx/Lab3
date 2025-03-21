@@ -47,12 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
-    <Compile Include="Games\Base\GameSave.cs" />
-    <Compile Include="Games\Base\BaseGame.cs" />
-    <Compile Include="Games\OnlineCasino.cs" />
-    <Compile Include="Games\SimulatorGame.cs" />
-    <Compile Include="Games\StrategyGame.cs" />
+    <Compile Include="Base\GameSave.cs" />
+    <Compile Include="Base\BaseGame.cs" />
+    <Compile Include="FactoryMetod\GameCreator.cs" />
+    <Compile Include="FactoryMetod\OnlineCasinoCreator.cs" />
+    <Compile Include="FactoryMetod\SimulatorGameCreator.cs" />
+    <Compile Include="FactoryMetod\StrategyGameCreator.cs" />
+    <Compile Include="Games%28Factory&amp;Template%29\OnlineCasino.cs" />
+    <Compile Include="Games%28Factory&amp;Template%29\SimulatorGame.cs" />
+    <Compile Include="Games%28Factory&amp;Template%29\StrategyGame.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="ObserverPattern\GameEvent.cs" />
+    <Compile Include="ObserverPattern\GameMonitor.cs" />
+    <Compile Include="ObserverPattern\GameObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
